@@ -14,7 +14,7 @@ RUN echo "=== Contenuto ricorsivo ===" && ls -R
 
 # Copia tutto il contenuto della cartella di build (./src)
 # COPY . .
-# COPY src/ /var/www
+COPY src/ /var/www
 # COPY ../src/ /var/www
 
 # Installa le dipendenze Laravel
