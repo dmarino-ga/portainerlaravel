@@ -3,7 +3,7 @@ version: "3.9"
 services:
   laravel:
     build:
-      context: ../src         # cartella contenente Laravel
+      context: ./src         # cartella contenente Laravel
       dockerfile: ../docker/Dockerfile   # path relativo al Dockerfile
     container_name: laravel-app
     volumes:
@@ -26,8 +26,8 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - ../src:/var/www
-      - ../docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./src:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - laravel
     networks:
