@@ -4,7 +4,7 @@ services:
   laravel:
     build:
       context: ./src           # cartella contenente Laravel
-      dockerfile: ./src/docker/Dockerfile   # path relativo al Dockerfile
+      dockerfile: ./docker/Dockerfile   # path relativo al Dockerfile
     container_name: laravel-app
     volumes:
       - ./src:/var/www
