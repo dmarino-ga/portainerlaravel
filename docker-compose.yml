@@ -20,18 +20,18 @@ services:
     networks:
       - mysql_network
 
-  # nginx:
-  #   image: nginx:1.27
-  #   container_name: laravel-nginx
-  #   ports:
-  #     - "8888:80"
-  #   volumes:
-  #     - ./src:/var/www
-  #     - ./docker/nginx/:/etc/nginx/conf.d/:ro   # monta tutta la cartella
-  #   depends_on:
-  #     - laravel
-  #   networks:
-  #     - mysql_network
+  nginx:
+    image: nginx:1.27
+    container_name: laravel-nginx
+    ports:
+      - "8888:80"
+    volumes:
+      # - ./src:/var/www
+      - ./docker/nginx/:/etc/nginx/conf.d/:ro   # monta tutta la cartella
+    depends_on:
+      - laravel
+    networks:
+      - mysql_network
 
 networks:
   mysql_network:

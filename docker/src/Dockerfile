@@ -18,10 +18,10 @@ COPY src/ /var/www
 # COPY ../src/ /var/www
 
 # Installa le dipendenze Laravel
-# RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader
 
 # Genera il file .env se manca
-# RUN php -r "file_exists('.env') || copy('.env.example', '.env');"
+RUN php -r "file_exists('.env') || copy('.env.example', '.env');"
 
 # Genera la APP_KEY
-# RUN php artisan key:generate
+RUN php artisan key:generate
