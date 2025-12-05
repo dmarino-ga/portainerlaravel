@@ -12,7 +12,7 @@ WORKDIR /var/www
 
 # Copia tutto il contenuto della cartella di build (./src)
 # COPY . .
-COPY src/ /var/www
+COPY ../src/ /var/www
 
 # Installa le dipendenze Laravel
 RUN composer install --no-dev --optimize-autoloader
