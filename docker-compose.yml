@@ -21,12 +21,14 @@ services:
       - mysql_network
 
   nginx:
-    image: nginx:1.27
+    build:
+      context: .                          # cartella contenente il Dockerfile
+      dockerfile: docker/nginx/Dockerfile  # path relativo al Dockerfile
     container_name: laravel-nginx
     ports:
       - "8888:80"
-    volumes:
-      - ./docker/nginx/:/etc/nginx/conf.d/:ro
+    # volumes:
+    #   - ./docker/nginx/:/etc/nginx/conf.d/:ro
     depends_on:
       - laravel
     networks:
