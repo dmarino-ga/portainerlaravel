@@ -17,6 +17,8 @@ services:
       DB_DATABASE: ${DB_DATABASE}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - mysql_network
 
   nginx:
     image: nginx:1.27
@@ -28,3 +30,10 @@ services:
       - ./docker/nginx/:/etc/nginx/conf.d/:ro
     depends_on:
       - laravel
+    networks:
+      - mysql_network
+
+networks:
+  mysql_network:
+    external: true
+    name: mysql_network
