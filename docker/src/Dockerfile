@@ -24,4 +24,4 @@ COPY src/ /var/www
 RUN php -r "file_exists('.env') || copy('.env.example', '.env');"
 
 # Genera la APP_KEY
-RUN php artisan key:generate
+# RUN php artisan key:generate
