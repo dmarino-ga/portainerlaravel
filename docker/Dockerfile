@@ -2,23 +2,22 @@ FROM php:8.3-fpm
 
 # Install PHP extensions
 RUN apt-get update && apt-get install -y \
-    unzip git curl \
-    && docker-php-ext-install pdo pdo_mysql
+    unzip git curl libzip-dev libonig-dev libpng-dev libxml2-dev \
+    && docker-php-ext-install pdo_mysql mbstring zip gd
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working dir
 WORKDIR /var/www
 
-# Copy application files
+# Copia tutto il contenuto della cartella di build (./src)
 COPY . .
 
-# Install dependencies
+# Installa le dipendenze Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Generate .env if missing
+# Genera il file .env se manca
 RUN php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-# Generate app key
+# Genera la APP_KEY
 RUN php artisan key:generate
