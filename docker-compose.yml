@@ -6,8 +6,8 @@ services:
       context: .                          # cartella contenente il Dockerfile
       dockerfile: docker/src/Dockerfile   # path relativo al Dockerfile
     container_name: laravel-app
-    volumes:
-      - ./src:/var/www
+    # volumes:
+    #   - ./src:/var/www
     environment:
       APP_ENV: local
       APP_DEBUG: true
