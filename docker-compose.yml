@@ -27,7 +27,7 @@ services:
       - "8888:80"
     volumes:
       - ./src:/var/www
-      - ./docker/nginx/:/etc/nginx/conf.d/:ro
+      - ./docker/nginx/:/etc/nginx/conf.d/:ro   # monta tutta la cartella
     depends_on:
       - laravel
     networks:
