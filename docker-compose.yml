@@ -3,7 +3,7 @@ version: "3.9"
 services:
   laravel:
     build:
-      context: ./src         # cartella contenente Laravel
+      context: ./src                     # cartella contenente Laravel
       dockerfile: ../docker/Dockerfile   # path relativo al Dockerfile
     container_name: laravel-app
     volumes:
