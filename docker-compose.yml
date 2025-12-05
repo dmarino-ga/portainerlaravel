@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile   # path relativo al Dockerfile
     container_name: laravel-app
     volumes:
-      - portainer_data/src:/var/www
+      - ./src:/var/www
     environment:
       APP_ENV: local
       APP_DEBUG: true
@@ -26,8 +26,8 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - portainer_data/src:/var/www
-      - portainer_data/docker/nginx/:/etc/nginx/conf.d/:ro   # monta tutta la cartella
+      - ./src:/var/www
+      - ./docker/nginx/:/etc/nginx/conf.d/:ro   # monta tutta la cartella
     depends_on:
       - laravel
     networks:
