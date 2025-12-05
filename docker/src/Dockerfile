@@ -13,7 +13,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN echo "=== Contenuto ricorsivo ===" && ls -R
 
 # Copia tutto il contenuto della cartella di build (./src)
-COPY . .
+# COPY . .
 # COPY src/ /var/www
 # COPY ../src/ /var/www
 
