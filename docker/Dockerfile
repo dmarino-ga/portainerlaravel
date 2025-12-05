@@ -1,13 +1,24 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
+# Install PHP extensions
 RUN apt-get update && apt-get install -y \
-    git zip unzip libonig-dev libzip-dev libpng-dev libxml2-dev \
-    && docker-php-ext-install pdo_mysql mbstring zip xml gd
+    unzip git curl \
+    && docker-php-ext-install pdo pdo_mysql
 
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Set working dir
 WORKDIR /var/www
 
+# Copy application files
 COPY . .
 
-RUN php -r "file_exists('.env') || copy('.env.example', '.env');" \
-    && composer install \
-    && php artisan key:generate
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Generate .env if missing
+RUN php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+# Generate app key
+RUN php artisan key:generate
